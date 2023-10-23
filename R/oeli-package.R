@@ -1,0 +1,24 @@
+#' @keywords internal
+#' @useDynLib oeli, .registration=TRUE
+"_PACKAGE"
+
+## usethis namespace: start
+#' @importFrom checkmate assert_character
+#' @importFrom checkmate assert_count
+#' @importFrom checkmate assert_flag
+#' @importFrom checkmate assert_int
+#' @importFrom checkmate assert_string
+#' @importFrom checkmate check_matrix
+#' @importFrom checkmate makeAssertionFunction
+#' @importFrom cli cli_abort
+#' @importFrom cli cli_inform
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 theme_void
+#' @importFrom hexSticker sticker
+#' @importFrom Rcpp evalCpp
+#' @importFrom showtext showtext_auto
+#' @importFrom stats rWishart
+#' @importFrom sysfonts font_add_google
+#' @importFrom usethis use_logo
+## usethis namespace: end
+NULL
