@@ -1,15 +1,15 @@
 Package: oeli
 Type: Package
 Title: Utilities for Developing Data Science Software
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
            role = c("aut", "cre"))
            )
-Description: Some general utilities that I and maybe others find useful when 
-    developing data science software. Functionality includes argument validation, 
-    density calculation and sampling, dealing with Cholesky roots, matrix printing 
+Description: Some general utilities (helper functions) that I and maybe others 
+    find useful when developing data science software. Functionality includes 
+    argument validation, density calculation and sampling, matrix printing 
     and indexing, user interaction, and more.
 License: GPL (>= 3)
 Encoding: UTF-8
@@ -22,8 +22,8 @@ LinkingTo: Rcpp, RcppArmadillo, testthat
 URL: https://github.com/loelschlaeger/oeli
 BugReports: https://github.com/loelschlaeger/oeli/issues
 NeedsCompilation: yes
-Packaged: 2023-10-20 12:21:54 UTC; loelschlaeger
+Packaged: 2023-11-03 09:50:41 UTC; loelschlaeger
 Author: Lennart Oelschläger [aut, cre]
 Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-10-23 15:40:06 UTC
+Date/Publication: 2023-11-03 11:20:02 UTC
