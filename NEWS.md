@@ -1,3 +1,41 @@
+# oeli 0.3.0
+
+* Added function `check_date()` which checks if the input has the correct date format.
+
+* Added function `find_closest_year()` which finds the closest year to a given date.
+
+* Added function `match_numerics()` which matches the indices of two numeric vectors as good as possible (that means with the smallest possible sum of deviations).
+
+* Added function `simulate_markov_chain()` which simulates a Markov chain.
+
+* Added function `sample_transition_probability_matrix()` which samples a transition probability matrix.
+
+* Added functions `test_covariance_matrix()`, `test_correlation_matrix()`, `test_transition_probability_matrix()`, and `test_probability_vector()` (which are the "test" version of the corresponding "assert" functions).
+
+* Added argument `tolerance` for covariance matrix, correlation matrix, transition probability matrix, and probability vector check functions to account for machine epsilon and avoid false positives.
+
+* Added functions `ll_hmm()` and `simulate_hmm()` to compute log-likelihood and simulate data from hidden Markov model.
+
+* Added argument `on_time_out` to function `timed()` that defines what action to take if the evaluation time exceeded (error, warning, or silent).
+
+* Added support to select `identifier = "all"` in `Index` object and to suppress warnings (if unknown identifiers were selected) (globally) via the `$hide_warnings` field.
+
+* Added argument `logical` to `Index` object to combine multiple identifiers either with logical and or logical or.
+
+* Added function `unexpected_error()` that handles an unknown error.
+
+* Added function `group_data_frame()` that groups a `data.frame` according to the values of a column.
+
+* Added function `delete_data_frame_columns()` that deletes columns of a `data.frame`.
+
+* Added function `renv_development_packages()` that creates a file that loads development packages so that `{renv}` can detect and write them to the lockfile.
+
+* Added function `plot_sequence()` that plots a sequence of numbers.
+
+* Renamed `Index` -> `Storage`.
+
+* Initialized a package website with `{pkgdown}` and started to add vignettes.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

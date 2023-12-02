@@ -5,7 +5,16 @@ test_that("computation of permutations works", {
   )
   expect_equal(
     permutations(LETTERS[1:3]),
-    list(c("A", "B", "C"), c("A", "C", "B"), c("B", "A", "C"), c("B", "C", "A"),
-         c("C", "A", "B"), c("C", "B", "A"))
+    list(
+      c("A", "B", "C"), c("A", "C", "B"), c("B", "A", "C"), c("B", "C", "A"),
+      c("C", "A", "B"), c("C", "B", "A")
+    )
+  )
+})
+
+test_that("brute force matching works", {
+  expect_equal(
+    match_numerics(1:9, 9:1),
+    9:1
   )
 })
