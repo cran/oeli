@@ -1,6 +1,6 @@
-0801420b495992f256955ccb147934d8 *DESCRIPTION
+cd70061b62c18b6916e75a95199ebbc4 *DESCRIPTION
 767bf35368223fb9324533e3140cfaae *NAMESPACE
-0cf930866df1ac3ff944d8736729e1da *NEWS.md
+2958e9a266768ca84e7291ce444b3f36 *NEWS.md
 6d18775f5f1924240cfefdc729879a4e *R/RcppExports.R
 e487567db609f01942f98297012e92da *R/argument_validation.R
 59a29d6abbb9a85ad6d6a368173be61d *R/calculate_density.R
@@ -31,7 +31,7 @@ cdec9e3878bfcec4abb660df18fceb63 *README.md
 1984b1baecfddc59f610bb6be000c03c *inst/doc/argument_validation.html
 4cc681ce171b0eafe697309b0a6dfca9 *inst/doc/storage_helpers.R
 46a242264bbe0be9b279c9a7266442cf *inst/doc/storage_helpers.Rmd
-884602afe4512dabe36d70e99899e844 *inst/doc/storage_helpers.html
+75e6b2e3f1bd24a2e8a56b5223f9b23d *inst/doc/storage_helpers.html
 faafdfaf482174739a35aac589e598b8 *man/Dictionary.Rd
 0aebee2861e0982d759694a33765f7f8 *man/Storage.Rd
 54ebdfdf9128beb9680f104916f53272 *man/basic_package_sticker.Rd
@@ -89,7 +89,7 @@ e5eccff0b8f6c2b83a3149aa05ab0bd7 *man/user_confirm.Rd
 94179577c7e57d552f19d271fac34c3b *man/variable_name.Rd
 dfef05bd82b6287da1c2b1e7a5989b6d *src/Makevars
 dfef05bd82b6287da1c2b1e7a5989b6d *src/Makevars.win
-71b2cac166d4bb84935cc4e0f8d0bfaa *src/RcppExports.cpp
+b671d341ac5e317364fb5dd765315812 *src/RcppExports.cpp
 dfd36e7218aa90599f2555d28d3bf4bb *src/densities.cpp
 db4254b5226d9fef60f525f6a8fb7891 *src/densities.h
 09aa7fd485b1347193c8c060b727e9f3 *src/random_draws.cpp

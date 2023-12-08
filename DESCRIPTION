@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: My Utilities for Developing Data Science Software
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
@@ -25,8 +25,8 @@ URL: https://github.com/loelschlaeger/oeli,
 BugReports: https://github.com/loelschlaeger/oeli/issues
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2023-12-02 14:17:27 UTC; Oelschlaeger
+Packaged: 2023-12-08 06:58:13 UTC; Oelschlaeger
 Author: Lennart Oelschläger [aut, cre]
 Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-12-02 14:40:02 UTC
+Date/Publication: 2023-12-08 13:40:05 UTC
