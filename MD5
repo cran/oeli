@@ -1,6 +1,6 @@
-cd70061b62c18b6916e75a95199ebbc4 *DESCRIPTION
+e3617cadb9c69707dd9c90c61574cf2a *DESCRIPTION
 767bf35368223fb9324533e3140cfaae *NAMESPACE
-2958e9a266768ca84e7291ce444b3f36 *NEWS.md
+7a5dfc5180b618c42e40eafbd3592594 *NEWS.md
 6d18775f5f1924240cfefdc729879a4e *R/RcppExports.R
 e487567db609f01942f98297012e92da *R/argument_validation.R
 59a29d6abbb9a85ad6d6a368173be61d *R/calculate_density.R
@@ -10,8 +10,8 @@ aa2aa83ada3ed72a5e0042342fcc5a86 *R/catching_exceptions.R
 8a906ef64953fe954d79e1ff63c2c7ed *R/covariance_differencing.R
 4f16c0f4112dcfccd80a0bd9710e0191 *R/data_frame_helpers.R
 341eea4c04bd470af8f9fcda9436ff6a *R/date_helpers.R
-13d4e60d545097cb76bb5b6682c137e9 *R/dictionary_helpers.R
-a28d66212eeab404f4c557ae6cbb932f *R/function_helpers.R
+b21292ae432fa9b94bd9f9efd97c5b7e *R/dictionary_helpers.R
+239000ff92a672847466a7c4a8a271eb *R/function_helpers.R
 f5d590aeef9b6664bca54ac23ad2bf6b *R/hidden_markov.R
 bc2d8f521cbb7e9d584ccd24853bc7fe *R/index_helpers.R
 b1112c2fc39ba782de26aaa6b803963d *R/list_helpers.R
@@ -31,7 +31,7 @@ cdec9e3878bfcec4abb660df18fceb63 *README.md
 1984b1baecfddc59f610bb6be000c03c *inst/doc/argument_validation.html
 4cc681ce171b0eafe697309b0a6dfca9 *inst/doc/storage_helpers.R
 46a242264bbe0be9b279c9a7266442cf *inst/doc/storage_helpers.Rmd
-75e6b2e3f1bd24a2e8a56b5223f9b23d *inst/doc/storage_helpers.html
+f5aefe7044bcfaf33c0d7e607b341e31 *inst/doc/storage_helpers.html
 faafdfaf482174739a35aac589e598b8 *man/Dictionary.Rd
 0aebee2861e0982d759694a33765f7f8 *man/Storage.Rd
 54ebdfdf9128beb9680f104916f53272 *man/basic_package_sticker.Rd
@@ -108,7 +108,7 @@ d9aacc7b3c6653025fcc1b65e2af577e *tests/testthat/test-cpp.R
 2a05adb7dd28efcf85640c7c8f8eb334 *tests/testthat/test-data_frame_helpers.R
 c4a9621c22e7ee0459f3ea4389bed8d8 *tests/testthat/test-date_helpers.R
 ee627c133a8a4563e54dc659680442ec *tests/testthat/test-dictionary_helpers.R
-660816a56f7446afdbc08a7d1e54ea19 *tests/testthat/test-function_helpers.R
+4189dbe3e2d5d8f658c30db7566a1c93 *tests/testthat/test-function_helpers.R
 bc264c30a570d8f0b3bd30e0f4ea7b62 *tests/testthat/test-hidden_markov.R
 ad4ce6bae8396367044841989ddcc6ef *tests/testthat/test-index_helpers.R
 7003fce576b9db4d46b6b65de6398840 *tests/testthat/test-list_helpers.R
