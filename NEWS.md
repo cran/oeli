@@ -1,8 +1,20 @@
+# oeli 0.4.0
+
+* Fixed bug in checks for matrices by checking for `NA`, `NaN` and infinite values.
+
+* Increment RoxygenNote to 7.3.0.
+
+* Added function `system_information()` that returns some general system level information.
+
+* Added functions `check_list_of_lists()`, `test_list_of_lists()`, and `assert_list_of_lists()`.
+
+* Added functions `check_numeric_vector()`, `test_numeric_vector()`, and `assert_numeric_vector()`.
+
+* Fixed a bug in `merge_lists()`, where `NULL` elements got erroneously ignored.
+
 # oeli 0.3.2
 
 * Fixed bug in `function_arguments()`.
-
-* Incrementing RoxygenNote to 7.3.0.
 
 # oeli 0.3.1
 

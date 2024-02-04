@@ -90,6 +90,12 @@ check_covariance_matrix <- function(
   if (nrow(x) != ncol(x)) {
     return("Must be square")
   }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
+  }
   if (any(abs(x - t(x)) > tolerance)) {
     return("Must be symmetric")
   }
@@ -149,6 +155,12 @@ check_correlation_matrix <- function(
   }
   if (nrow(x) != ncol(x)) {
     return("Must be square")
+  }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
   }
   if (any(abs(x - t(x)) > tolerance)) {
     return("Must be symmetric")
@@ -213,6 +225,12 @@ check_transition_probability_matrix <- function(
   if (nrow(x) != ncol(x)) {
     return("Must be square")
   }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
+  }
   if (any(x < 0 | x > 1)) {
     return("Must have values between 0 and 1")
   }
@@ -263,15 +281,14 @@ test_transition_probability_matrix <- checkmate::makeTestFunction(
 #' @export
 
 check_probability_vector <- function(
-    x, len = NULL, tolerance = sqrt(.Machine$double.eps)) {
+    x, len = NULL, tolerance = sqrt(.Machine$double.eps)
+) {
   checkmate::assert_number(tolerance, lower = 0)
-  res1 <- checkmate::check_atomic_vector(x, any.missing = FALSE, len = len)
-  if (!isTRUE(res1)) {
-    return(res1)
-  }
-  res2 <- checkmate::check_numeric(x, lower = 0, upper = 1)
-  if (!isTRUE(res2)) {
-    return(res2)
+  res <- check_numeric_vector(
+    x, any.missing = FALSE, len = len, lower = 0, upper = 1
+  )
+  if (!isTRUE(res)) {
+    return(res)
   }
   if (abs(sum(x) - 1) > tolerance) {
     return("Must add up to 1")
@@ -295,4 +312,110 @@ assert_probability_vector <- checkmate::makeAssertionFunction(
 
 test_probability_vector <- checkmate::makeTestFunction(
   check_probability_vector
+)
+
+#' Check if an argument is a list of lists
+#'
+#' @description
+#' This function checks whether the input is a list that contains list elements.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @inheritParams checkmate::check_list
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_list}}.
+#'
+#' @export
+
+check_list_of_lists <- function(
+    x, len = NULL
+  ) {
+  res <- checkmate::check_list(x, len = len)
+  if (!isTRUE(res)) {
+    return(res)
+  }
+  for (i in seq_along(x)) {
+    res <- checkmate::check_list(x[[i]], len = len)
+    if (!isTRUE(res)) {
+      return(paste("Check for element", i, "failed:", res))
+    }
+  }
+  return(TRUE)
+}
+
+#' @rdname check_list_of_lists
+#' @inheritParams checkmate::assert_list
+#' @export
+
+assert_list_of_lists <- checkmate::makeAssertionFunction(
+  check_list_of_lists
+)
+
+#' @rdname check_list_of_lists
+#' @inheritParams checkmate::assert_list
+#' @export
+
+test_list_of_lists <- checkmate::makeTestFunction(
+  check_list_of_lists
+)
+
+#' Check if an argument is a numeric vector
+#'
+#' @description
+#' This function checks whether the input is a numeric vector.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @inheritParams checkmate::check_numeric
+#' @inheritParams checkmate::check_atomic_vector
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_numeric}}.
+#'
+#' @export
+
+check_numeric_vector <- function(
+    x, lower = -Inf, upper = Inf, finite = FALSE, any.missing = TRUE,
+    all.missing = TRUE, len = NULL, min.len = NULL, max.len = NULL,
+    unique = FALSE, sorted = FALSE, names = NULL, typed.missing = FALSE,
+    null.ok = FALSE
+) {
+  res1 <- checkmate::check_atomic_vector(
+    x, any.missing = any.missing, all.missing = all.missing, len = len,
+    min.len = min.len, max.len = max.len, unique = unique, names = names
+  )
+  if (!isTRUE(res1)) {
+    return(res1)
+  }
+  res2 <- checkmate::check_numeric(
+    x, lower = lower, upper = upper, finite = finite, any.missing = any.missing,
+    all.missing = all.missing, len = len, min.len = min.len, max.len = max.len,
+    unique = unique, sorted = sorted, names = names,
+    typed.missing = typed.missing, null.ok = null.ok
+  )
+  if (!isTRUE(res2)) {
+    return(res2)
+  }
+  return(TRUE)
+}
+
+#' @rdname check_numeric_vector
+#' @inheritParams checkmate::assert_numeric
+#' @inheritParams checkmate::assert_atomic_vector
+#' @export
+
+assert_numeric_vector <- checkmate::makeAssertionFunction(
+  check_numeric_vector
+)
+
+#' @rdname check_numeric_vector
+#' @inheritParams checkmate::assert_numeric
+#' @inheritParams checkmate::assert_atomic_vector
+#' @export
+
+test_numeric_vector <- checkmate::makeTestFunction(
+  check_numeric_vector
 )
