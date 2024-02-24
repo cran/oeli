@@ -18,7 +18,7 @@ This R package contains some general utilities that I and maybe others find usef
 
 - differencing covariance matrices
 
-- working with data frames
+- [working with data frames](https://loelschlaeger.de/oeli/articles/data_frame_helpers.html)
 
 - working with dates
 
@@ -34,7 +34,7 @@ This R package contains some general utilities that I and maybe others find usef
 
 - creating Markov chains
 
-- working with matrices
+- [working with matrices](https://loelschlaeger.de/oeli/articles/matrix_helpers.html)
 
 - helpers for building an R package
 
@@ -45,4 +45,5 @@ This R package contains some general utilities that I and maybe others find usef
 - timed evaluations
 
 - user interactions
+
 
