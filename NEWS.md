@@ -1,3 +1,21 @@
+# oeli 0.5.0
+
+* Added function `chunk_vector()` to split a vector into chunks.
+
+* Added function `insert_matrix_column()` to add a column to a matrix.
+
+* Added function `insert_vector_entry()` to add a entry to a vector.
+
+* Renamed `basic_package_sticker()` -> `package_logo()` and added a demo.
+
+* Added function `matrix_diagonal_indices()` that returns the indices of the diagonal elements of a quadratic matrix.
+
+* Fixed bug in `check_numeric_vector()`: `null.ok` did not work.
+
+* Added function `subsets()` that generates subsets of a vector.
+
+* Fixed bug in `system_information()`: do not fail if information cannot be retrieved.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).

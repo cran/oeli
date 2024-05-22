@@ -1,101 +1,3 @@
-#' Creating and initializing a basic package sticker
-#'
-#' @description
-#' This function sets up a basic package sticker. The sticker has a white
-#' background and the package name (with or without curly brackets) in the
-#' center. The font size for the package name is scaled such that it fits inside
-#' the sticker. Type \code{?oeli} to see an example.
-#'
-#' @param package_name
-#' A \code{character}, the package name.
-#' @param brackets
-#' Either \code{TRUE} to have curly brackets around the package name (default)
-#' or \code{FALSE} if not.
-#'
-#' @export
-#'
-#' @return
-#' No return value, but it runs \code{\link[usethis]{use_logo}} in the end.
-
-basic_package_sticker <- function(package_name, brackets = TRUE) {
-  ### input checks
-  checkmate::assert_string(package_name)
-  checkmate::assert_flag(brackets)
-
-  ### define font
-  sysfonts::font_add_google("Martel", "my_font")
-  showtext::showtext_auto()
-
-  ### define path
-  filename <- tempfile(
-    pattern = paste("sticker", package_name, sep = "_"),
-    fileext = ".png"
-  )
-
-  ### optionally add brackets to package name
-  if (brackets) {
-    package_name <- paste0("{", package_name, "}")
-  }
-
-  ### determine font size for package name
-  chars <- nchar(package_name)
-  p_size <- 56 * exp(-0.09 * chars)
-
-  ### build sticker
-  sticker_file <- hexSticker::sticker(
-
-    ### image
-    subplot = ggplot2::ggplot() +
-      ggplot2::theme_void(),
-    s_x = 1,
-    s_y = 1,
-    s_width = 2,
-    s_height = 2,
-
-    ### package name
-    package = package_name,
-    p_x = 1,
-    p_y = 1,
-    p_color = "black",
-    p_family = "my_font",
-    p_fontface = "plain",
-    p_size = p_size,
-
-    ### sticker
-    h_size = 1.2,
-    h_fill = "white",
-    h_color = "black",
-    spotlight = TRUE,
-    l_x = 0.9,
-    l_y = 1.4,
-    l_width = 2,
-    l_height = 1,
-    l_alpha = 0.8,
-    white_around_sticker = FALSE,
-
-    ### URL
-    url = "",
-    u_x = 1,
-    u_y = 0.1,
-    u_color = "black",
-    u_family = "my_font",
-    u_size = 7,
-    u_angle = 30,
-
-    ### save file
-    filename = filename,
-    asp = 1,
-    dpi = 300
-  )
-  sticker_file
-
-  ### message
-  message("path:", filename)
-
-  ### set sticker
-  usethis::use_logo(img = filename)
-}
-
 #' Handling of an unexpected error
 #'
 #' @description
@@ -205,19 +107,49 @@ renv_development_packages <- function(
 #' \itemize{
 #'   \item \code{maschine}, the model name of the device
 #'   \item \code{cores}, the number of cores
-#'   \item \code{RAM}, the size of the RAM
-#'   \item \code{OS}, the operating system
-#'   \item \code{r_version}, the R version used
+#'   \item \code{ram}, the size of the RAM
+#'   \item \code{os}, the operating system
+#'   \item \code{rversion}, the R version used
 #' }
+#'
+#' @examples
+#' system_information()
 
 system_information <- function() {
-  cpu <- benchmarkme::get_cpu()
+
+  ### get information
+  cpu <- try(benchmarkme::get_cpu(), silent = TRUE)
+  if (inherits(cpu, "try-error") || !checkmate::test_list(cpu)) {
+    cpu <- list()
+  }
+  machine <- cpu$model_name
+  if (!checkmate::test_string(machine, na.ok = FALSE, null.ok = FALSE)) {
+    machine <- NA_character_
+  }
+  cores <- cpu$no_of_cores
+  if (!checkmate::test_int(cores, lower = 0, na.ok = FALSE, null.ok = FALSE)) {
+    cores <- NA_integer_
+  }
+  ram <- try(benchmarkme::get_ram(), silent = TRUE)
+  if (!checkmate::test_class(ram, "ram")) {
+    ram <- NA
+  }
+  os <- .Platform$OS.type
+  if (!checkmate::test_string(os, na.ok = FALSE, null.ok = FALSE)) {
+    os <- NA_character_
+  }
+  rversion <- try(getRversion(), silent = TRUE)
+  if (!inherits(rversion, "R_system_version")) {
+    rversion <- NA
+  }
+
+  ### build and return output
   list(
-    "machine" = cpu$model_name,
-    "cores" = cpu$no_of_cores,
-    "RAM" = benchmarkme::get_ram(),
-    "OS" = .Platform$OS.type,
-    "r_version" = paste(R.version$major, R.version$minor, sep = ".")
+    "machine" = machine,
+    "cores" = cores,
+    "ram" = ram,
+    "os" = os,
+    "rversion" = rversion
   )
 }
 
