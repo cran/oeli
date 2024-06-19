@@ -1,3 +1,13 @@
+# oeli 0.5.2
+
+* Added function `identical_structure()` to check if two objects have the identical structure.
+
+* Fixed bug in `matrix_diagonal_indices()`: did not always return `integer`.
+
+# oeli 0.5.1
+
+* Added function `vector_occurrence()` to find the positions of first or last occurrence of unique vector elements.
+
 # oeli 0.5.0
 
 * Added function `chunk_vector()` to split a vector into chunks.

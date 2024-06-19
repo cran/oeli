@@ -28,3 +28,11 @@ chunk_vector(x, n = 3, type = 2)
 ## ----chunk vectors strict-----------------------------------------------------
 try(chunk_vector(1:7, n = 3, strict = TRUE))
 
+## ----vector occurrence--------------------------------------------------------
+x <- c(1, 1, 1, 2, 2, 2, 3, 3, 3)
+vector_occurrence(x, "first")
+vector_occurrence(x, "last")
+
+## ----vector occurrence unique-------------------------------------------------
+unique(x)
+
