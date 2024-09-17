@@ -4,7 +4,7 @@
 \alias{check_numeric_vector}
 \alias{assert_numeric_vector}
 \alias{test_numeric_vector}
-\title{Check if an argument is a numeric vector}
+\title{Check numeric vector}
 \usage{
 check_numeric_vector(
   x,
@@ -60,7 +60,8 @@ test_numeric_vector(
 )
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
 \item{lower}{[\code{numeric(1)}]\cr
 Lower value all elements of \code{x} must be greater than or equal to.}
@@ -116,8 +117,28 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_numeric}}.
+Same as documented in \code{\link[checkmate]{check_numeric}}.
 }
 \description{
-This function checks whether the input is a numeric vector.
+These functions check whether the input is a numeric vector.
 }
+\examples{
+x <- c(1, 2, "3")
+check_numeric_vector(x)
+test_numeric_vector(x)
+\dontrun{
+assert_numeric_vector(x)
+}
+}
+\seealso{
+Other vector helpers: 
+\code{\link{check_probability_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{subsets}()},
+\code{\link{vector_occurrence}()}
+}
+\concept{vector helpers}
+\keyword{validation}

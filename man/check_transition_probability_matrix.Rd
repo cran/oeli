@@ -4,7 +4,7 @@
 \alias{check_transition_probability_matrix}
 \alias{assert_transition_probability_matrix}
 \alias{test_transition_probability_matrix}
-\title{Check if an argument is a transition probability matrix}
+\title{Check transition probability matrix}
 \usage{
 check_transition_probability_matrix(
   x,
@@ -27,11 +27,14 @@ test_transition_probability_matrix(
 )
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
-\item{dim}{An \code{integer}, the matrix dimension.}
+\item{dim}{[\code{integer(1)}]\cr
+The matrix dimension.}
 
-\item{tolerance}{A non-negative \code{numeric} tolerance value.}
+\item{tolerance}{[\code{numeric(1)}]\cr
+A non-negative tolerance value.}
 
 \item{.var.name}{[\code{character(1)}]\cr
 Name of the checked object to print in assertions. Defaults to
@@ -41,9 +44,32 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_matrix}}.
+Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
-This function checks whether the input is a quadratic, real matrix with
-elements between 0 and 1 and row sums equal to 1.
+These functions check whether the input is a transition probability matrix.
 }
+\examples{
+T <- matrix(c(0.8,  0.2,  0.1, 0.1,  0.7,  0.4, 0.1,  0.1,  0.6), nrow = 3)
+check_transition_probability_matrix(T)
+test_transition_probability_matrix(T)
+\dontrun{
+assert_transition_probability_matrix(T)
+}
+}
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{cov_to_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
+}
+\concept{matrix helpers}
+\keyword{validation}

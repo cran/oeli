@@ -4,7 +4,7 @@
 \alias{check_probability_vector}
 \alias{assert_probability_vector}
 \alias{test_probability_vector}
-\title{Check if an argument is a probability vector}
+\title{Check probability vector}
 \usage{
 check_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 
@@ -19,12 +19,14 @@ assert_probability_vector(
 test_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
 \item{len}{[\code{integer(1)}]\cr
 Exact expected length of \code{x}.}
 
-\item{tolerance}{A non-negative \code{numeric} tolerance value.}
+\item{tolerance}{[\code{numeric(1)}]\cr
+A non-negative tolerance value.}
 
 \item{.var.name}{[\code{character(1)}]\cr
 Name of the checked object to print in assertions. Defaults to
@@ -34,9 +36,29 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_numeric}}.
+Same as documented in \code{\link[checkmate]{check_numeric}}.
 }
 \description{
-This function checks whether the input is a real vector with non-negative
-entries that add up to one.
+These functions check whether the input fulfills the properties of a
+probability matrix.
 }
+\examples{
+p <- c(0.2, 0.3, 0.6)
+check_probability_vector(p)
+test_probability_vector(p)
+\dontrun{
+assert_probability_vector(p)
+}
+}
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{subsets}()},
+\code{\link{vector_occurrence}()}
+}
+\concept{vector helpers}
+\keyword{validation}

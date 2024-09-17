@@ -1,3 +1,15 @@
+# oeli 0.6.0
+
+* Added function `quiet()` to silence expressions.
+
+* Added functions `dtnorm()` and `dttnorm()` to calculate the density of a (two-sided) truncated normal distribution.
+
+* Added function `correlated_regressors()` to simulate correlated regressor values.
+
+* Improved documentation.
+
+* Removed functions `check_date()` and `find_closest_year()` (too special, only needed for `{fHMM}` package).
+
 # oeli 0.5.2
 
 * Added function `identical_structure()` to check if two objects have the identical structure.

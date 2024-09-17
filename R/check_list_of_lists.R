@@ -1,21 +1,27 @@
-#' Check if an argument is a list of lists
+#' Check list of lists
 #'
 #' @description
-#' This function checks whether the input is a list that contains list elements.
-#'
-#' @param x
-#' Object to check.
+#' These functions check whether the input is a list that contains list
+#' elements.
 #'
 #' @inheritParams checkmate::check_list
 #'
 #' @return
-#' Compare to \code{\link[checkmate]{check_list}}.
+#' Same as documented in \code{\link[checkmate]{check_list}}.
 #'
+#' @keywords validation
+#' @family list helpers
 #' @export
+#'
+#' @examples
+#' L <- list(list(1), list(2), 3)
+#' check_list_of_lists(L)
+#' test_list_of_lists(L)
+#' \dontrun{
+#' assert_list_of_lists(L)
+#' }
 
-check_list_of_lists <- function(
-    x, len = NULL
-) {
+check_list_of_lists <- function(x, len = NULL) {
   res <- checkmate::check_list(x, len = len)
   if (!isTRUE(res)) {
     return(res)

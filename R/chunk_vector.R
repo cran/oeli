@@ -5,23 +5,27 @@
 #' - splits a vector into \code{n} chunks of equal size (\code{type = 1}),
 #' - splits a vector into chunks of size \code{n} (\code{type = 2}).
 #'
-#' @param x
-#' A \code{vector}.
+#' @param x \[atomic()`\]\cr
+#' A vector of elements.
 #'
-#' @param n
-#' An \code{integer} smaller or equal \code{length(x)}.
+#' @param n \[`integer(1)`\]\cr
+#' A number smaller or equal \code{length(x)}.
 #'
-#' @param type
-#' Either \code{1} (default) to split \code{x} into \code{n} chunks of equal
-#' size or \code{2} to split \code{x} into chunks of size \code{n}.
+#' @param type \[`1` | `2`\]\cr
+#' Either
 #'
-#' @param strict
+#' - \code{1} (default) to split \code{x} into \code{n} chunks of equal size,
+#' - or \code{2} to split \code{x} into chunks of size \code{n}.
+#'
+#' @param strict \[`logical(1)`\]\cr
 #' Set to \code{TRUE} to fail if \code{length(x)} is not a multiple of \code{n},
 #' or \code{FALSE} (default), else.
 #'
 #' @return
 #' A \code{list}.
 #'
+#' @keywords transformation
+#' @family vector helpers
 #' @export
 #'
 #' @examples
@@ -31,12 +35,27 @@
 #' try(chunk_vector(x, n = 5, strict = TRUE))
 
 chunk_vector <- function(x, n, type = 1, strict = FALSE) {
-  checkmate::assert_atomic_vector(x)
-  checkmate::assert_int(n, lower = 1)
-  checkmate::assert_choice(type, c(1, 2))
-  checkmate::assert_flag(strict)
+  input_check_response(
+    checkmate::check_atomic_vector(x),
+    "x"
+  )
+  input_check_response(
+    checkmate::check_int(n, lower = 1),
+    "n"
+  )
+  input_check_response(
+    checkmate::check_choice(type, c(1, 2)),
+    "type"
+  )
+  input_check_response(
+    checkmate::check_flag(strict),
+    "strict"
+  )
   if (strict) {
-    stopifnot("'n' is not a multiple of 'length(x)'" = length(x) %% n == 0)
+    input_check_response(
+      if (length(x) %% n == 0) TRUE else "Not a multiple of 'length(x)'",
+      "n"
+    )
   }
   if (type == 1) {
     split(x, cut(seq_along(x), n, labels = FALSE))
