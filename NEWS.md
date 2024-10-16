@@ -1,3 +1,21 @@
+# oeli 0.7.0
+
+* Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
+
+* Improved documentation of `dmvnorm()` and `rmvnorm()`. The mean vector can now be of length 1 for convenience. The degenerate case (covariance is zero) is now supported. Also separate dimensions of `Sigma` can be degenerate for `rmvnorm()`.
+
+* Added function `split_vector_at()` to split a vector at specific positions.
+
+* Allow for zero matrix in `cov_to_chol()`.
+
+* Added function `round_data.frame()` that rounds `numeric` columns of a `data.frame`.
+
+* Added function `print_data.frame()` that prints a (possibly abbreviated) `data.frame`.
+
+* Renamed function `group_data_frame()` -> `group_data.frame()`.
+
+* Renamed function `delete_data_frame_columns()` -> `delete_columns_data.frame()`.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.
