@@ -1,3 +1,15 @@
+# oeli 0.7.1
+
+* Allowed for zero-dimension edge cases in `cov_to_chol()` and `chol_to_cov()`.
+
+* Added function `map_indices()` that maps indices from an input vector to corresponding sequences of grouped indices.
+
+* Added function `M()` for taking differences such that the resulting vector is negative.
+
+* Removed function `renv_development_packages()` and argument `use_logo` in `package_logo()` to get rid of dependency to `{usethis}` package.
+
+* Extended `input_check_response()` to allow for multiple alternative checking criteria.
+
 # oeli 0.7.0
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
