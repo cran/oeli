@@ -1,3 +1,7 @@
+# oeli 0.7.2
+
+* Added function `check_missing()` that checks for missing formal arguments.
+
 # oeli 0.7.1
 
 * Allowed for zero-dimension edge cases in `cov_to_chol()` and `chol_to_cov()`.
