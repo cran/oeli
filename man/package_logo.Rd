@@ -4,7 +4,16 @@
 \alias{package_logo}
 \title{Creating a basic logo for an R package}
 \usage{
-package_logo(package_name, brackets = TRUE)
+package_logo(
+  package_name,
+  brackets = FALSE,
+  background = ggplot2::ggplot() + ggplot2::theme_void(),
+  s_x = 1,
+  s_y = 1,
+  s_width = 1,
+  s_height = 1,
+  white_around_sticker = FALSE
+)
 }
 \arguments{
 \item{package_name}{[\code{character(1)}]\cr
@@ -12,6 +21,10 @@ The package name.}
 
 \item{brackets}{[\code{logical(1)}]\cr
 Curly brackets around the package name?}
+
+\item{background}{A \code{ggplot} object, the background of the sticker.}
+
+\item{s_x, s_y, s_width, s_height, white_around_sticker}{Passed on to \code{\link[hexSticker]{sticker}}.}
 }
 \value{
 A \code{ggplot} object.
@@ -23,7 +36,7 @@ center. The font size for the package name is scaled such that it fits inside
 the logo. Type \code{?oeli} to see an example.
 }
 \examples{
-package_logo("my_package", brackets = TRUE)
+print(package_logo("my_package", brackets = TRUE))
 }
 \references{
 \itemize{
@@ -36,6 +49,7 @@ Other package helpers:
 \code{\link{Dictionary}},
 \code{\link{Storage}},
 \code{\link{check_missing}()},
+\code{\link{find_namespace_calls}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

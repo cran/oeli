@@ -1,12 +1,8 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.2
-Authors@R: c(
-    person("Lennart", "Oelschl\u00e4ger", 
-           email = "oelschlaeger.lennart@gmail.com", 
-           role = c("aut", "cre"))
-           )
+Version: 0.7.3
+Authors@R: person("Lennart", "Oelschl\u00e4ger", email = "oelschlaeger.lennart@gmail.com", role = c("aut", "cre"))
 Description: A collection of general-purpose helper functions that I (and maybe 
     others) find useful when developing data science software. Includes tools 
     for simulation, data transformation, input validation, and more.
@@ -14,17 +10,16 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Config/testthat/edition: 3
 RoxygenNote: 7.3.2
-Imports: benchmarkme, checkmate, cli, ggplot2, hexSticker, latex2exp,
-        Rcpp, rprojroot, showtext, SimMultiCorrData, stats, sysfonts,
-        utils
+Imports: benchmarkme, checkmate, cli, ggplot2, hexSticker, R6, Rcpp,
+        SimMultiCorrData, stats, tools, utils
 LinkingTo: Rcpp, RcppArmadillo, testthat
 Suggests: knitr, rmarkdown, testthat (>= 3.0.0), xml2
 URL: https://github.com/loelschlaeger/oeli,
         http://loelschlaeger.de/oeli/
 BugReports: https://github.com/loelschlaeger/oeli/issues
 NeedsCompilation: yes
-Packaged: 2025-04-18 08:42:01 UTC; lennart
+Packaged: 2025-05-19 14:19:46 UTC; Lennart Oelschläger
 Author: Lennart Oelschläger [aut, cre]
 Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-04-18 09:10:02 UTC
+Date/Publication: 2025-05-19 14:50:02 UTC

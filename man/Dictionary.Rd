@@ -61,6 +61,7 @@ meta_dict$alias
 Other package helpers: 
 \code{\link{Storage}},
 \code{\link{check_missing}()},
+\code{\link{find_namespace_calls}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},
@@ -126,7 +127,7 @@ The names of the values connected to a key.}
 
 \item{\code{value_assert}}{[\code{alist(1)}]\cr
 For each element in \code{value_names}, \code{values_assert} \emph{can} have an
-identically named element of the form \code{checkmate::assert_*(...)}, where
+identically named element of the form \code{checkmate::assert*(...)}, where
 \code{...} can be any argument for the assertion function except for the
 \code{x} argument.}
 

@@ -16,6 +16,12 @@
 #' @param brackets \[`logical(1)`\]\cr
 #' Curly brackets around the package name?
 #'
+#' @param background
+#' A `ggplot` object, the background of the sticker.
+#'
+#' @param s_x,s_y,s_width,s_height,white_around_sticker
+#' Passed on to \code{\link[hexSticker]{sticker}}.
+#'
 #' @return
 #' A \code{ggplot} object.
 #'
@@ -24,9 +30,17 @@
 #' @family package helpers
 #'
 #' @examples
-#' package_logo("my_package", brackets = TRUE)
+#' print(package_logo("my_package", brackets = TRUE))
 
-package_logo <- function(package_name, brackets = TRUE) {
+package_logo <- function(
+    package_name, brackets = FALSE,
+    background = ggplot2::ggplot() + ggplot2::theme_void(),
+    s_x = 1,
+    s_y = 1,
+    s_width = 1,
+    s_height = 1,
+    white_around_sticker = FALSE
+  ) {
 
   ### input checks
   input_check_response(
@@ -37,10 +51,10 @@ package_logo <- function(package_name, brackets = TRUE) {
     check = checkmate::check_flag(brackets),
     var_name = "brackets"
   )
-
-  ### define font
-  sysfonts::font_add_google("Martel", "my_font")
-  showtext::showtext_auto()
+  input_check_response(
+    check = checkmate::check_class(background, "ggplot"),
+    var_name = "background"
+  )
 
   ### define path
   filename <- tempfile(
@@ -62,19 +76,17 @@ package_logo <- function(package_name, brackets = TRUE) {
     hexSticker::sticker(
 
       ### image
-      subplot = ggplot2::ggplot() +
-        ggplot2::theme_void(),
-      s_x = 1,
-      s_y = 1,
-      s_width = 2,
-      s_height = 2,
+      subplot = background,
+      s_x = s_x,
+      s_y = s_y,
+      s_width = s_width,
+      s_height = s_height,
 
       ### package name
       package = package_name,
       p_x = 1,
       p_y = 1,
       p_color = "black",
-      p_family = "my_font",
       p_fontface = "plain",
       p_size = p_size,
 
@@ -82,13 +94,8 @@ package_logo <- function(package_name, brackets = TRUE) {
       h_size = 1.2,
       h_fill = "white",
       h_color = "black",
-      spotlight = TRUE,
-      l_x = 0.9,
-      l_y = 1.4,
-      l_width = 2,
-      l_height = 1,
-      l_alpha = 0.8,
-      white_around_sticker = FALSE,
+      spotlight = FALSE,
+      white_around_sticker = white_around_sticker,
 
       ### URL
       url = "",
