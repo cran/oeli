@@ -1,5 +1,5 @@
 #include <testthat.h>
-#include "dirichlet.h"
+#include "internal.h"
 
 context("dirichlet") {
 

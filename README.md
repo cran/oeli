@@ -11,7 +11,7 @@ status](https://www.r-pkg.org/badges/version/oeli)](https://CRAN.R-project.org/p
 downloads](https://cranlogs.r-pkg.org/badges/last-month/oeli)](https://CRAN.R-project.org/package=oeli)
 [![R-CMD-check](https://github.com/loelschlaeger/oeli/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/loelschlaeger/oeli/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/loelschlaeger/oeli/branch/master/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli?branch=master)
+coverage](https://codecov.io/gh/loelschlaeger/oeli/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli)
 <!-- badges: end -->
 
 This [R](https://CRAN.R-project.org) package provides helper functions I
@@ -34,22 +34,26 @@ not included in base R, like the Dirichlet:
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
 rdirichlet(concentration = 1:3)
-#> [1] 0.2832878 0.5086812 0.2080309
+#> [1] 0.01795087 0.41315984 0.56888929
 ```
 
-For faster computation, [Rcpp](https://www.rcpp.org) implementations are
-also available:
+Or the mixture of Gaussian distributions:
 
 ``` r
-microbenchmark::microbenchmark(
-  "R"    = rmvnorm(mean = c(0, 0, 0), Sigma = diag(3)),
-  "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
-)
-#> Unit: microseconds
-#>  expr   min     lq    mean median     uq    max neval
-#>     R 275.3 295.65 345.847  310.1 332.45 2386.5   100
-#>  Rcpp   2.7   3.20   6.245    4.8   5.40  164.2   100
+x <- c(0, 0)
+mean <- matrix(c(1, 1, -1, -1), ncol = 2) # means in columns
+Sigma <- matrix(c(diag(2), 0.1 * diag(2)), ncol = 2) # vectorized covariances in columns
+proportions <- c(0.7, 0.3)
+dmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+#> [1] 0.04100656
+pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+#> [1] 0.3171506
+rmixnorm(n = 1000, mean = mean, Sigma = Sigma, proportions = proportions) |>
+  as.data.frame() |> 
+  ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x = V1, y = V2))
 ```
+
+<img src="man/figures/README-mixnorm-1.png" width="50%" style="display: block; margin: auto;" />
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
 
@@ -107,12 +111,12 @@ How to print a `matrix` without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>         [,1]  [,2]  [,3] ... [,100]
-#> [1,]    0.79 -0.43 -0.87 ...  -2.12
-#> [2,]   -1.11  1.98 -2.42 ...   1.65
-#> [3,]    1.66  1.76  0.25 ...  -2.97
-#> ...      ...   ...   ... ...    ...
-#> [100,]  0.44  0.28  0.53 ...  -1.75
+#>         [,1]  [,2] [,3] ... [,100]
+#> [1,]    -0.3 -0.74 -0.1 ...   1.01
+#> [2,]    1.39 -2.06 1.29 ...   -0.5
+#> [3,]   -0.45 -1.57 0.43 ...   1.61
+#> ...      ...   ...  ... ...    ...
+#> [100,]  1.12  0.77 -1.6 ...  -0.08
 ```
 
 And what about a `data.frame`?
@@ -122,14 +126,14 @@ x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
 print_data.frame(x, rows = 7, digits = 0)
 #>      x  y
 #> 1     0 A
-#> 2    -1 B
+#> 2     1 B
 #> 3     0 C
-#> 4     0 D
+#> 4    -1 D
 #> <993 rows hidden>
 #>          
 #> 998   0 H
 #> 999   0 I
-#> 1000  0 J
+#> 1000  2 J
 ```
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
@@ -158,20 +162,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C        N1          N2         U
-#> 1 1 2 -3.619643  1.24813328 -1.782100
-#> 2 1 3 -4.117207  0.19133009 -1.585383
-#> 3 2 1  2.146791 -0.08796485 -1.290140
-#> 4 2 3 -3.501855  0.60817726 -1.688658
-#> 5 1 3  2.707852 -2.17507050 -1.912338
-#> 6 2 1 -2.222701  2.28324260 -1.646795
+#>   P C         N1         N2         U
+#> 1 0 3  2.9451097 -0.8638549 -1.921007
+#> 2 2 1 -5.1350957  1.3390663 -1.133347
+#> 3 3 1 -1.2722775 -0.1166058 -1.174671
+#> 4 2 2 -1.5969501  0.3877268 -1.493931
+#> 5 3 2 -0.3863015  0.5339768 -1.395497
+#> 6 5 1 -3.6924075  0.9798459 -1.066466
 cor(data)
-#>              P          C          N1          N2           U
-#> P   1.00000000 -0.3164384 -0.08426915 -0.03743832  0.54776279
-#> C  -0.31643843  1.0000000  0.19326415 -0.50596805 -0.75090001
-#> N1 -0.08426915  0.1932641  1.00000000 -0.30000000 -0.26643345
-#> N2 -0.03743832 -0.5059680 -0.30000000  1.00000000  0.09397231
-#> U   0.54776279 -0.7509000 -0.26643345  0.09397231  1.00000000
+#>               P          C          N1           N2           U
+#> P   1.000000000 -0.2598683 -0.02141804 -0.008708831  0.44863283
+#> C  -0.259868343  1.0000000  0.25880138 -0.523439321 -0.71222969
+#> N1 -0.021418038  0.2588014  1.00000000 -0.300000000 -0.24632069
+#> N2 -0.008708831 -0.5234393 -0.30000000  1.000000000  0.09679108
+#> U   0.448632829 -0.7122297 -0.24632069  0.096791077  1.00000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

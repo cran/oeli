@@ -19,11 +19,41 @@ test_that("Multivariate normal density can be computed", {
     0.159
   )
   expect_equal(
+    round(dmvnorm(x = x, mean = mean[1], Sigma = Sigma, log = FALSE) * factor) / factor,
+    0.159
+  )
+  expect_equal(
     round(dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE) * factor) / factor,
     -1.838
   )
   expect_error(
-    dmvnorm(x = 1:2, mean = 1:3, Sigma = diag(4)),
+    dmvnorm(x = 1:2, mean = 1:3, Sigma = diag(2)),
+    "Input `mean` is bad: Must have length 2, but has length 3"
+  )
+})
+
+test_that("Univariate normal CDF can be computed", {
+  x <- 1
+  mean <- 2
+  Sigma <- 4
+  expect_equal(pmvnorm(x, mean, Sigma), pnorm(x, mean, sqrt(Sigma)))
+  expect_error(
+    pmvnorm(x = 1:2, mean = 1:3, Sigma = diag(4)),
+    "Input `mean` is bad: Must have length 2, but has length 3"
+  )
+})
+
+test_that("Multivariate normal CDF can be computed", {
+  x <- c(-0.78, -1.17)
+  mean <- c(0.64, 0.97)
+  Sigma <- matrix(c(3.35, 1.45, 1.45, 3.03), ncol = 2)
+  factor <- 1000
+  expect_equal(
+    round(pmvnorm(x = x, mean = mean, Sigma = Sigma) * factor) / factor,
+    0.055
+  )
+  expect_error(
+    pmvnorm(x = 1:2, mean = 1:3, Sigma = diag(4)),
     "Input `mean` is bad: Must have length 2, but has length 3"
   )
 })

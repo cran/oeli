@@ -2,16 +2,22 @@
 % Please edit documentation in R/RcppExports.R, R/mvnorm.R
 \name{dmvnorm_cpp}
 \alias{dmvnorm_cpp}
+\alias{pmvnorm_cpp}
 \alias{rmvnorm_cpp}
 \alias{dmvnorm}
+\alias{pmvnorm}
 \alias{rmvnorm}
 \title{Multivariate normal distribution}
 \usage{
 dmvnorm_cpp(x, mean, Sigma, log = FALSE)
 
+pmvnorm_cpp(x, mean, Sigma, abseps = 0.001)
+
 rmvnorm_cpp(mean, Sigma, log = FALSE)
 
 dmvnorm(x, mean, Sigma, log = FALSE)
+
+pmvnorm(x, mean, Sigma, abseps = 0.001)
 
 rmvnorm(n = 1, mean, Sigma, log = FALSE)
 }
@@ -22,32 +28,33 @@ A quantile vector of length \code{p}.}
 \item{mean}{[\code{numeric()}]\cr
 The mean vector of length \code{p}.
 
-For \code{dmvnorm()} and \code{rmvnorm()}, it can also be of length \code{1} for
+For the functions without suffix \verb{_cpp}, it can also be of length \code{1} for
 convenience, then \code{rep(mean, p)} is considered.}
 
 \item{Sigma}{[\code{matrix()}]\cr
 The covariance matrix of dimension \code{p}.
 
-It can also be a zero matrix.
-
 For \code{rmvnorm()}, arbitrary dimensions (i.e., full rows and corresponding
 columns) of \code{Sigma} can be \code{0}.
 
-For \code{dmvnorm()} and \code{rmvnorm()} and if \code{p = 1}, it can also be a single
-\code{numeric} for convenience. Note that \code{Sigma} is this case is a variance,
-which is a different format than in \code{stats::dnorm()} or \code{stats::rnorm},
-which require a standard deviation.}
+For the functions without suffix \verb{_cpp} and if \code{p = 1}, it can also be a
+single \code{numeric} for convenience. Note that \code{Sigma} is this case is a
+variance, which is a different format than in \code{stats::dnorm()} or
+\code{stats::rnorm}, which require a standard deviation.}
 
 \item{log}{[\code{logical(1)}]\cr
-For \code{dmvnorm()}: Return the logarithm of the density value?
+Consider the log-normal distribution?}
 
-For \code{rmvnorm()}: Draw from a log-normal distribution?}
+\item{abseps}{[\code{numeric(1)}]\cr
+The absolute error tolerance.}
 
 \item{n}{[\code{integer(1)}]\cr
-An \code{integer}, the number of requested samples.}
+The number of requested samples.}
 }
 \value{
 For \code{dmvnorm()}: The density value.
+
+For \code{pmvnorm()}: The value of the distribution function.
 
 For \code{rmvnorm()}: If \code{n = 1} a \code{vector} of length \code{p} (note
 that it is a column vector for \code{rmvnorm_cpp()}), else
@@ -57,11 +64,19 @@ a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
 The function \code{dmvnorm()} computes the density of a multivariate normal
 distribution.
 
+The function \code{pmvnorm()} computes the cumulative distribution function of a
+multivariate normal distribution.
+
 The function \code{rmvnorm()} samples from a multivariate normal distribution.
 
 The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 
 The univariate normal distribution is available as the special case \code{p = 1}.
+}
+\details{
+\code{pmvnorm()} just calls \code{mvtnorm::pmvnorm} with the randomized
+Quasi-Monte-Carlo procedure by Genz and Bretz. The argument \code{abseps} controls
+the accuracy of the Gaussian integral approximation.
 }
 \examples{
 x <- c(0, 0)
@@ -72,6 +87,9 @@ Sigma <- diag(2)
 dmvnorm(x = x, mean = mean, Sigma = Sigma)
 dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
 
+# compute CDF
+pmvnorm(x = x, mean = mean, Sigma = Sigma)
+
 # sample
 rmvnorm(n = 3, mean = mean, Sigma = Sigma)
 rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
@@ -81,8 +99,10 @@ Other simulation helpers:
 \code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
 \code{\link{ddirichlet_cpp}()},
+\code{\link{dmixnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{dwishart_cpp}()},
+\code{\link{gaussian_tv}()},
 \code{\link{simulate_markov_chain}()}
 }
 \concept{simulation helpers}
