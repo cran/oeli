@@ -27,7 +27,7 @@ test_transition_probability_matrix(
 )
 }
 \arguments{
-\item{x}{[any]\cr
+\item{x}{[\code{any}]\cr
 Object to check.}
 
 \item{dim}{[\code{integer(1)}]\cr
@@ -61,6 +61,7 @@ assert_transition_probability_matrix(T)
 Other matrix helpers: 
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
+\code{\link{check_one_hot_matrix}()},
 \code{\link{cov_to_chol}()},
 \code{\link{diff_cov}()},
 \code{\link{insert_matrix_column}()},

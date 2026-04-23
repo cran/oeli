@@ -19,7 +19,7 @@ assert_covariance_matrix(
 test_covariance_matrix(x, dim = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
-\item{x}{[any]\cr
+\item{x}{[\code{any}]\cr
 Object to check.}
 
 \item{dim}{[\code{integer(1)}]\cr
@@ -53,6 +53,7 @@ assert_covariance_matrix(M)
 \seealso{
 Other matrix helpers: 
 \code{\link{check_correlation_matrix}()},
+\code{\link{check_one_hot_matrix}()},
 \code{\link{check_transition_probability_matrix}()},
 \code{\link{cov_to_chol}()},
 \code{\link{diff_cov}()},

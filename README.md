@@ -25,6 +25,31 @@ install.packages("oeli")
 The following shows some demos. Click the headings for references on all
 available helpers in each category.
 
+### [Data](https://loelschlaeger.de/oeli/reference/index.html#data)
+
+The `hermann` data contains historical information on editions of the
+[Hermannslauf](https://de.wikipedia.org/wiki/Hermannslauf), including
+the date, temperature, and winning times for men and women:
+
+``` r
+hermann
+#> # A tibble: 54 × 8
+#>    edition  year date        temp winner_men        seconds_men winner_women  
+#>      <dbl> <dbl> <date>     <dbl> <chr>                   <dbl> <chr>         
+#>  1       1  1972 1972-04-16    NA Helmut Bode              6686 Lydia Günnewig
+#>  2       2  1973 1973-04-29    14 Helmut Bode              6795 Irmhild Holste
+#>  3       3  1974 1974-04-28    14 Achim Stober             6942 Liane Winter  
+#>  4       4  1975 1975-04-27    11 Klaus-Dieter Holz        6720 Christine Ross
+#>  5       5  1976 1976-04-25    11 Heribert Bulk            6453 Liane Winter  
+#>  6       6  1977 1977-04-24     9 Jim Hodey                6503 Liane Winter  
+#>  7       7  1978 1978-04-30    16 Michael Heine            6856 Liane Winter  
+#>  8       8  1979 1979-04-29     7 Billy Cain               6587 Liane Winter  
+#>  9       9  1980 1980-04-27     9 Dieter Lippe             6706 Liane Winter  
+#> 10      10  1981 1981-04-26    16 Helmut Schmidt           6735 Rotraud Zinner
+#> # ℹ 44 more rows
+#> # ℹ 1 more variable: seconds_women <dbl>
+```
+
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
 The package has density and sampling functions for some distributions
@@ -53,7 +78,7 @@ rmixnorm(n = 1000, mean = mean, Sigma = Sigma, proportions = proportions) |>
   ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x = V1, y = V2))
 ```
 
-<img src="man/figures/README-mixnorm-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-mixnorm-1.png" alt="" width="50%" style="display: block; margin: auto;" />
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
 
@@ -103,7 +128,7 @@ logo <- package_logo("my_package", brackets = TRUE)
 print(logo)
 ```
 
-<img src="man/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-package_logo-1.png" alt="" width="50%" style="display: block; margin: auto;" />
 
 How to print a `matrix` without filling up the entire console?
 
@@ -162,20 +187,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C         N1         N2         U
-#> 1 0 3  2.9451097 -0.8638549 -1.921007
-#> 2 2 1 -5.1350957  1.3390663 -1.133347
-#> 3 3 1 -1.2722775 -0.1166058 -1.174671
-#> 4 2 2 -1.5969501  0.3877268 -1.493931
-#> 5 3 2 -0.3863015  0.5339768 -1.395497
-#> 6 5 1 -3.6924075  0.9798459 -1.066466
+#>   P C        N1         N2         U
+#> 1 3 3  0.854606 -1.1509971 -1.575507
+#> 2 3 3 -3.801998  0.5696389 -1.784321
+#> 3 4 3 -1.024611 -1.0414976 -1.333803
+#> 4 0 3 -0.490758 -0.9806894 -1.840349
+#> 5 1 3 -1.681134  0.7511786 -1.939042
+#> 6 2 1 -2.814986  0.7984411 -1.367265
 cor(data)
-#>               P          C          N1           N2           U
-#> P   1.000000000 -0.2598683 -0.02141804 -0.008708831  0.44863283
-#> C  -0.259868343  1.0000000  0.25880138 -0.523439321 -0.71222969
-#> N1 -0.021418038  0.2588014  1.00000000 -0.300000000 -0.24632069
-#> N2 -0.008708831 -0.5234393 -0.30000000  1.000000000  0.09679108
-#> U   0.448632829 -0.7122297 -0.24632069  0.096791077  1.00000000
+#>              P          C          N1          N2          U
+#> P   1.00000000 -0.2287181 -0.08793083 -0.02476611  0.4877251
+#> C  -0.22871807  1.0000000  0.28573358 -0.52539377 -0.7628656
+#> N1 -0.08793083  0.2857336  1.00000000 -0.30000000 -0.2694518
+#> N2 -0.02476611 -0.5253938 -0.30000000  1.00000000  0.1138354
+#> U   0.48772506 -0.7628656 -0.26945184  0.11383544  1.0000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
