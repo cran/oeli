@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.6
+Version: 0.7.7
 Authors@R: person(
     given = "Lennart", 
     family = "Oelschl\u00e4ger", 
@@ -14,7 +14,6 @@ Description: A collection of general-purpose helper functions that I (and maybe
 License: GPL (>= 3)
 Encoding: UTF-8
 Config/testthat/edition: 3
-RoxygenNote: 7.3.3
 Depends: R (>= 4.1.0)
 Imports: benchmarkme, checkmate, cli, cubature, dplyr, future,
         future.apply, ggplot2, glue, hexSticker, progressr, R6, Rcpp,
@@ -25,9 +24,10 @@ URL: https://github.com/loelschlaeger/oeli,
         http://loelschlaeger.de/oeli/
 BugReports: https://github.com/loelschlaeger/oeli/issues
 LazyData: true
+Config/roxygen2/version: 8.0.0
 NeedsCompilation: yes
-Packaged: 2026-04-22 22:04:13 UTC; loelschlaeger
+Packaged: 2026-09-04 11:38:26 UTC; loelschlaeger
 Author: Lennart Oelschläger [aut, cre]
 Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-04-23 05:10:02 UTC
+Date/Publication: 2026-09-04 12:30:11 UTC

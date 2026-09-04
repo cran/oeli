@@ -1,3 +1,13 @@
+# oeli 0.7.7
+
+* Added function `find_pkg_functions()` to list R functions in a package.
+
+* `pmvnorm()` computes rectangle probabilities via the new `lower` argument,
+  is exact for up to three dimensions, and offers the Geweke-Hajivassiliou-Keane
+  simulator on Halton points via `method = "ghk"` for higher dimensions.
+
+* Small documentation fixes.
+
 # oeli 0.7.6
 
 * Addressed #6.
